@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Sports Website</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navigation Bar -->
+    <nav class="p-10 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ... font-serif font-bold">
+        <div class="container mx-auto flex flex-wrap items-center justify-between">
+            <div class="text-xl font-bold mb-4 md:mb-0">Arushi Sports Center</div>
+            <ul class="flex flex-wrap space-x-4">
+                <li><a href="#" class="hover:underline">Home</a></li>
+                <li><a href="#" class="hover:underline">Events</a></li>
+                <li><a href="#" class="hover:underline">Teams</a></li>
+                <li><a href="#" class="hover:underline" onclick="openContactModal()">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Featured Section -->
+    <section class="bg-gradient-to-r from-blue-200 via-blue-100 to-teal-200 p-4 md:p-8">
+        <div class="container mx-auto">
+            <h1 class="text-2xl md:text-4xl font-bold mb-4 text-gray-800">Upcoming Event</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                <!-- Featured Event 1 -->
+                <div class="bg-teal-300 p-4 md:p-6 rounded-md">
+                    <h2 class="text-lg md:text-xl font-bold mb-2 text-gray-800">Football Championship</h2>
+                    <p class="text-gray-700">Join us for an exciting football championship this weekend!</p>
+                    <a href="#" class="text-blue-700 hover:underline mt-2 inline-block" onclick="openModal('football')">Learn More</a>
+                </div>
+                <!-- Featured Event 2 -->
+                <div class="bg-teal-300 p-4 md:p-6 rounded-md">
+                    <h2 class="text-lg md:text-xl font-bold mb-2 text-gray-800">Basketball Tournament</h2>
+                    <p class="text-gray-700">Witness the skills and thrills in our annual basketball tournament.</p>
+                    <a href="#" class="text-blue-700 hover:underline mt-2 inline-block" onclick="openModal('basketball')">Learn More</a>
+                </div>
+                <!-- Featured Event 3 -->
+                <div class="bg-teal-300 p-4 md:p-6 rounded-md">
+                    <h2 class="text-lg md:text-xl font-bold mb-2 text-gray-800">Soccer League</h2>
+                    <p class="text-gray-700">Cheer for your favorite team in the soccer league finals.</p>
+                    <a href="#" class="text-blue-700 hover:underline mt-2 inline-block" onclick="openModal('soccer')">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="bg-gray-100 p-4 md:p-8">
+        <div class="container mx-auto">
+            <h2 class="text-xl md:text-2xl font-bold mb-4 text-gray-800">Upcoming Events</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                <!-- Event 1 -->
+                <div class="bg-white p-4 md:p-6 rounded-md">
+                    <h3 class="text-md md:text-lg font-bold mb-2 text-gray-800">Tennis Open</h3>
+                    <p class="text-gray-700">Date: July 15, 2022</p>
+                    <a href="#" class="text-blue-700 hover:underline mt-2 inline-block" onclick="openModal('tennis')">Details</a>
+                </div>
+                <!-- Event 2 -->
+                <div class="bg-white p-4 md:p-6 rounded-md">
+                    <h3 class="text-md md:text-lg font-bold mb-2 text-gray-800">Golf Tournament</h3>
+                    <p class="text-gray-700">Date: August 5, 2022</p>
+                    <a href="#" class="text-blue-700 hover:underline mt-2 inline-block" onclick="openModal('golf')">Details</a>
+                </div>
+                <!-- Event 3 -->
+                <div class="bg-white p-4 md:p-6 rounded-md">
+                    <h3 class="text-md md:text-lg font-bold mb-2 text-gray-800">Athletics Meet</h3>
+                    <p class="text-gray-700">Date: September 20, 2022</p>
+                    <a href="#" class="text-blue-700 hover:underline mt-2 inline-block" onclick="openModal('athletics')">Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <div id="footballModal" class="modal" onclick="closeModal('football')">
+        <div class="modal-content bg-white" onclick="event.stopPropagation();">
+            <span class="close-btn" onclick="closeModal('football')">&times;</span>
+            <h2 class="text-xl md:text-2xl font-bold mb-4 text-gray-800">Football Championship</h2>
+            <p class="text-gray-700">Join us for an exciting football championship this weekend! This modal provides additional information about the event.</p>
+        </div>
+    </div>
+
+    <div id="basketballModal" class="modal" onclick="closeModal('basketball')">
+        <div class="modal-content bg-white" onclick="event.stopPropagation();">
+            <span class="close-btn" onclick="closeModal('basketball')">&times;</span>
+            <h2 class="text-xl md:text-2xl font-bold mb-4 text-gray-800">Basketball Tournament</h2>
+            <p class="text-gray-700">Witness the skills and thrills in our annual basketball tournament. This modal provides additional information about the event.</p>
+        </div>
+    </div>
+
+    <div id="soccerModal" class="modal" onclick="closeModal('soccer')">
+        <div class="modal-content bg-white" onclick="event.stopPropagation();">
+            <span class="close-btn" onclick="closeModal('soccer')">&times;</span>
+            <h2 class="text-xl md:text-2xl font-bold mb-4 text-gray-800">Soccer League</h2>
+            <p class="text-gray-700">Cheer for your favorite team in the soccer league finals. This modal provides additional information about the event.</p>
+        </div>
+    </div>
+
+    <div id="tennisModal" class="modal" onclick="closeModal('tennis')">
+        <div class="modal-content bg-white" onclick="event.stopPropagation();">
+            <span class="close-btn" onclick="closeModal('tennis')">&times;</span>
+            <h2 class="text-xl md:text-2xl font-bold mb-4 text-gray-800">Tennis Open</h2>
+            <p class="text-gray-700">The Tennis Open is scheduled for July 15, 2022. This modal provides additional information about the event.</p>
+        </div>
+    </div>
+
+    <div id="golfModal" class="modal" onclick="closeModal('golf')">
+        <div class="modal-content bg-white" onclick="event.stopPropagation();">
+            <span class="close-btn" onclick="closeModal('golf')">&times;</span>
+            <h2 class="text-xl md:text-2xl font-bold mb-4 text-gray-800">Golf Tournament</h2>
+            <p class="text-gray-700">Get ready for the Golf Tournament on August 5, 2022. This modal provides additional information about the event.</p>
+        </div>
+    </div>
+
+    <div id="athleticsModal" class="modal" onclick="closeModal('athletics')">
+        <div class="modal-content bg-white" onclick="event.stopPropagation();">
+            <span class="close-btn" onclick="closeModal('athletics')">&times;</span>
+            <h2 class="text-xl md:text-2xl font-bold mb-4 text-gray-800">Athletics Meet</h2>
+            <p class="text-gray-700">Save the date for the Athletics Meet on September 20, 2022. This modal provides additional information about the event.</p>
+        </div>
+    </div>
+
+    <section class="bg-gray-100 p-4 md:p-8">
+        <div class="container mx-auto form-container">
+            <h2 class="text-xl md:text-2xl font-bold mb-4 text-gray-800">Contact Us</h2>
+            <form id="contactForm" onsubmit="return validateContactForm()">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 font-bold mb-2">Your Name:</label>
+                    <input type="text" id="name" name="name" class="px-4 py-2 w-full border-2 border-gray-200 rounded-md" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-bold mb-2">Your Email:</label>
+                    <input type="email" id="email" name="email" class="px-4 py-2 w-full border-2 border-gray-200 rounded-md" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-gray-700 font-bold mb-2">Your Message:</label>
+                    <textarea id="message" name="message" class="px-4 py-2 w-full border-2 border-gray-200 rounded-md" placeholder="Enter your message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-800 text-white">Submit</button>
+            </form>
+        </div>
+    </section>
+    <script>
+        function openModal(eventType) {
+            document.getElementById(eventType + 'Modal').style.display = 'flex';
+        }
+
+        function closeModal(eventType) {
+            document.getElementById(eventType + 'Modal').style.display = 'none';
+        }
+
+        function validateContactForm() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+
+            if (name === "" || email === "" || message === "") {
+                alert("Please fill in all fields.");
+                return false;
+            }
+
+            alert("Form submitted successfully!\nName: " + name + "\nEmail: " + email + "\nMessage: " + message);
+            return true;
+        }
+    </script>
+
+</body>
+</html>
